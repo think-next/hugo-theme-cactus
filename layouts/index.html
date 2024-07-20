@@ -3,8 +3,8 @@
   {{ if isset .Site.Params "description" }}
     {{ .Site.Params.description | $.Page.RenderString }}
   {{ end }}
-  {{ if isset .Site.Params "social" }}
-      <p>Find me on
+  <!-- {{ if isset .Site.Params "social" }}
+      <p>
       {{ $length := (len .Site.Params.social) }}
       {{ range $index, $elem := .Site.Params.social}}
       {{ if eq $elem.name "email" }}
@@ -33,7 +33,7 @@
         {{ end }}
       {{ end }}
       </p>
-  {{ end }}
+  {{ end }} -->
   {{ partial "optional-about.html" . }}
   </section>
 
