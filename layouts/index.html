@@ -3,8 +3,8 @@
   {{ if isset .Site.Params "description" }}
     {{ .Site.Params.description | $.Page.RenderString }}
   {{ end }}
-  {{ if isset .Site.Params "social" }}
-      <p>Find me on
+  <!-- {{ if isset .Site.Params "social" }}
+      <p>
       {{ $length := (len .Site.Params.social) }}
       {{ range $index, $elem := .Site.Params.social}}
       {{ if eq $elem.name "email" }}
@@ -33,7 +33,7 @@
         {{ end }}
       {{ end }}
       </p>
-  {{ end }}
+  {{ end }} -->
   {{ partial "optional-about.html" . }}
   </section>
 
@@ -71,15 +71,16 @@
     {{ partial "pagination.html" . }}
 
     {{ else }}
-    <ul class="post-list">
+    <ul class="post-list timeline">
       {{ .Scratch.Set "count" 5 }}
       {{ if isset .Site.Params "postsonhomepage" }}
         {{ .Scratch.Set "count" .Site.Params.postsOnHomePage }}
       {{ end }}
       {{ range (first (.Scratch.Get "count") $mainPosts) }}
         <li class="post-item">
+          <div class="timeline-badge"></div>
           <div class="meta"><time datetime="{{ time .Date }}" itemprop="datePublished">{{ .Date.Format $dataFormat }}</time></div>
-          <span><a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- print "Untitled" -}}{{ end }}</a></span>
+          <span class=""><a href="{{ .Permalink }}">{{ if .Title }} {{- .Title -}} {{ else }} {{- print "Untitled" -}}{{ end }}</a></span>
         </li>
       {{ end }}
     </ul>
